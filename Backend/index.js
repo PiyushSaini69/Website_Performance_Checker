@@ -1,6 +1,7 @@
 import express, { response } from 'express';
 import cors from  'cors';
-
+import dotenv from 'dotenv'
+dotenv.config();
 const app = express();
 
 app.use(cors());
@@ -8,7 +9,7 @@ app.use(express.json());
 
 app.post("/sendUrl", async (req, res) => {
   const url = req.body;
-  const apiKey = 'AIzaSyBVLjcyl6y4c3KVjqd9oKwTKgoUBI0MJcI';
+  const apiKey =process.env.Google_API
   const mobileUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${(url)}&strategy=mobile&key=${apiKey}`;
   const desktopUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${(url)}&strategy=desktop&key=${apiKey}`;
   try {
